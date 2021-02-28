@@ -21,4 +21,14 @@ def validar_faixa_inteiro(pergunta, inicio, fim, padrao = None):
         except ValueError:
             print(f'Valor Inválido, favor digitar entre {inicio} e {fim}')
 
+def validar_faixa_inteiro_ou_branco(pergunta, inicio, fim):
+    while True:
+        try:
+            entrada = input(pergunta)
+            if nulo_ou_vazio(entrada):
+                return None
 
+            valor = int(entrada)
+
+            if inicio <= valor <= fim:
+                return valor
