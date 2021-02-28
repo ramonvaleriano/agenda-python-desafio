@@ -111,3 +111,19 @@ class Nome:
     def CriaChave(nome):
         return nome.strip().lower()
 
+@total_ordering
+class TipoTelefone:
+    def __init__(self, tipo):
+        self.tipo = tipo
+
+    def __str__(self):
+        return f'{self.tipo}'
+
+    def __eq__(self, other):
+        if other is None:
+            return False
+        return self.tipo == other
+
+    def __lt__(self, other):
+        return self.tipo < other
+
