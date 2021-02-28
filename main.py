@@ -75,7 +75,8 @@ class ListaUnica:
     def ordena(self, chave = None):
         self.lista.sort(key=chave)
 
-class nome:
+@total_ordering
+class Nome:
     def __init__(self, nome):
         self.nome = nome
 
@@ -83,4 +84,30 @@ class nome:
         return self.nome
 
     def __repr__(self):
-        return f''
+        return f'<Classe {type(self).__name__} em 0x{id(self):x} Nome: {self.__nome} Chave: {self.__chave}'
+
+    def __eq__(self, other):
+        return self.nome == other
+
+    def __lt__(self, other):
+        return self.nome < other
+
+    @property
+    def nome(self):
+        return self.__nome
+
+    @nome.setter
+    def nome(self, valor):
+        if nulo_ou_vazio(valor):
+            raise ValueError('Nome não pode ser Numo nem em Branco.')
+        self.__nome = valor
+        self.__chave = Nome.CriaChave(valor)
+
+    @property
+    def chave(self):
+        return self.__chave
+
+    @staticmethod
+    def CriaChave(nome):
+        return nome.strip().lower()
+
